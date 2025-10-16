@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Connexion | MonApp
+    </title>
+    <script src="https://cdn.tailwindcss.com">
+
+    </script>
+  </head>
+
+  <body class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="bg-white shadow-lg rounded-2xl w-full max-w-md p-8">
+      <h1 class="text-2xl font-bold text-center text-gray-800 mb-6">
+        Connexion à votre compte
+      </h1>
+
+      <!-- Message d’erreur (optionnel) -->
+      @if(flashMessages.get('error'))
+        <div class="bg-red-100 text-red-700 px-4 py-2 rounded-md mb-4">
+          {{ flashMessages.get('error') }}
+        </div>
+      @endif
+      
+      <form action="/login" method="post" class="space-y-5">
+        {{ csrfField() }}
+        <!-- Champ Email -->
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Adresse e-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="exemple@mail.com"
+            class="w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-lg px-4 py-2 outline-none transition"
+            required
+          />
+        </div>
+
+        <!-- Champ Mot de passe -->
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Mot de passe</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            class="w-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 rounded-lg px-4 py-2 outline-none transition"
+            required
+          />
+        </div>
+
+        <!-- Se souvenir de moi -->
+        <div class="flex items-center justify-between">
+          <label class="flex items-center space-x-2 text-sm text-gray-600">
+            <input type="checkbox" name="remember_me" class="w-4 h-4 text-blue-600 rounded focus:ring-blue-500" />
+            <span>Se souvenir de moi</span>
+          </label>
+
+          <a href="/forgot-password" class="text-blue-500 text-sm hover:underline">
+            Mot de passe oublié ?
+          </a>
+        </div>
+
+        <!-- Bouton -->
+        <button
+          type="submit"
+          class="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+        >
+          Se connecter
+        </button>
+      </form>
+
+      <p class="text-center text-sm text-gray-600 mt-6">
+        Pas encore de compte ?
+        <a href="/signup" class="text-blue-500 font-medium hover:underline">
+          S'inscrire
+        </a>
+      </p>
+    </div>
+  </body>
+</html>
